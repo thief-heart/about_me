@@ -1,34 +1,41 @@
-# Trang About Me của Thương
+# 🌟 Trang Web About Me - Thương
 
-Trang web cá nhân đơn giản, tối ưu cho chế độ dark mode, giao diện đẹp mắt, dễ nhìn.
-
-## Mô tả
-
-- Giới thiệu bản thân khiêm tốn, đang học Arch Linux và lập trình.
-- Hiển thị kỹ năng chính: C++, Python, ESP32, Linux & Arch Linux.
-- Có phần dự án đơn giản: đo khoảng cách bằng cảm biến siêu âm HC-SR04.
-- Liên kết mạng xã hội: Email, Facebook, GitHub.
-- Thiết kế responsive, hiển thị tốt trên cả điện thoại và máy tính.
-
-## Công nghệ sử dụng
-
-- HTML5, CSS3 (Flexbox, Grid)
-- Google Fonts (Quicksand)
-- SVG icon cho mạng xã hội
-- Thuần CSS, không dùng thư viện ngoài
-
-## Hướng dẫn chạy
-
-1. Clone hoặc tải file `index.html` về máy.
-2. Mở file bằng trình duyệt web hiện đại (Chrome, Firefox, Edge...).
-3. Tuỳ chỉnh thông tin cá nhân, liên hệ hoặc thêm dự án nếu muốn.
-
-## Ghi chú
-
-- Avatar mặc định lấy từ biểu tượng GitHub.
-- Dự án mẫu rất cơ bản, dành cho học tập và phát triển kỹ năng.
-- Mọi chỉnh sửa đều có thể làm trực tiếp trong file HTML.
+Trang cá nhân thiết kế tối giản, phong cách dark mode, tập trung thể hiện con người thật của mình – đang học, đang trải nghiệm, vẫn khiêm tốn nhưng đầy quyết tâm.
 
 ---
 
-© 2025 Thương
+## 📖 Giới thiệu
+
+Đây là trang web static dùng để giới thiệu bản thân, kỹ năng và dự án đơn giản của Thương – sinh viên đang trên hành trình học tập về lập trình và Linux (đặc biệt Arch Linux).
+
+- Giao diện hiện đại, dễ nhìn, tối ưu cho chế độ dark mode.
+- Responsive, chạy tốt trên mọi thiết bị.
+- Sử dụng HTML + CSS thuần, không thư viện bên ngoài.
+
+---
+
+## 💡 Tính năng nổi bật
+
+- **Phần giới thiệu:** Thể hiện rõ mục tiêu và tinh thần học hỏi.
+- **Kỹ năng:** Tập trung vào C++, Python, ESP32, Linux/Arch Linux.
+- **Dự án:** Mẫu dự án đơn giản đo khoảng cách bằng cảm biến siêu âm HC-SR04.
+- **Liên hệ:** Email, Facebook, GitHub với icon SVG sắc nét.
+
+---
+
+## 🛠 Công nghệ & Công cụ
+
+- HTML5 & CSS3 (Flexbox & Grid)
+- Google Fonts (Quicksand)
+- SVG icon (Facebook & GitHub)
+- Tối ưu trải nghiệm Dark Mode
+- Thiết kế responsive chuẩn mực
+
+---
+
+## 🚀 Hướng dẫn sử dụng
+
+1. **Clone repo:**
+
+   ```bash
+   git clone https://github.com/thief-heart/your-repo-name.git

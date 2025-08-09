@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thương | About Me</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+  }
+  a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto;
+    background: #1f2937;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(21, 156, 228, 0.4);
+    padding: 40px 50px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #58a6ff;
+    background: #0d1117;
+    padding: 15px;
+    object-fit: contain;
+    box-shadow: 0 8px 25px rgba(88, 166, 255, 0.7);
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  header img:hover {
+    transform: scale(1.1);
+  }
+  header h1 {
+    margin: 20px 0 10px;
+    font-size: 2.8rem;
+    color: #cbd5e1;
+    letter-spacing: 2px;
+  }
+  header p.slogan {
+    font-style: italic;
+    font-weight: 600;
+    color: #58a6ff;
+    font-size: 1.2rem;
+  }
+  section {
+    margin-bottom: 40px;
+  }
+  section h2 {
+    font-size: 2rem;
+    color: #58a6ff;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #58a6ff;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  section.bio p {
+    color: #a0aec0;
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+  }
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+  }
+  .skill-item {
+    background: #273549;
+    color: #a5b8ff;
+    font-weight: 700;
+    padding: 12px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(88, 166, 255, 0.3);
+    user-select: none;
+    cursor: default;
+    transition: background-color 0.3s ease;
+  }
+  .skill-item:hover {
+    background: #58a6ff;
+    color: #0d1117;
+  }
+  .repo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+  }
+  .repo-card {
+    background: #161b22;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(88, 166, 255, 0.2);
+    padding: 25px 30px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+  }
+  .repo-card:hover {
+    box-shadow: 0 10px 30px rgba(88, 166, 255, 0.5);
+    transform: translateY(-6px);
+  }
+  .repo-name {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .description {
+    font-style: italic;
+    color: #94a3b8;
+    margin-bottom: 10px;
+  }
+  .tech {
+    font-weight: 600;
+    color: #7f9cf5;
+    font-size: 0.95rem;
+  }
+  section.contact {
+    text-align: center;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    font-size: 2rem;
+  }
+  .social-links a {
+    color: #58a6ff;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  .social-links a:hover {
+    color: #1e40af;
+  }
+  footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 60px;
+    user-select: none;
+  }
+  @media (max-width: 600px) {
+    .skill-list {
+      justify-content: center;
+    }
+    .repo-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Avatar GitHub" title="Avatar GitHub" />
+  <h1>Thương</h1>
+  <p class="slogan">Học hỏi từng ngày, xây dựng lại bản thân.</p>
+</header>
+
+<section class="bio">
+  <h2>Giới thiệu về tôi</h2>
+  <p>Mình là sinh viên đang trên hành trình hoàn thiện bản thân, tập trung học lập trình và phát triển kỹ năng kỹ thuật.</p>
+  <p>Hiện mình đang tìm hiểu sâu về Arch Linux, học cách tối ưu hệ thống và quản lý máy chủ cá nhân.</p>
+  <p>Dù còn khiêm tốn, mình luôn cố gắng từng bước nhỏ để tiến bộ và tạo ra những dự án thực tế.</p>
+</section>
+
+<section class="skills">
+  <h2>Kỹ năng nổi bật</h2>
+  <div class="skill-list">
+    <div class="skill-item">C++</div>
+    <div class="skill-item">Python</div>
+    <div class="skill-item">ESP32 & IoT</div>
+    <div class="skill-item">Linux & Arch Linux</div>
+  </div>
+</section>
+
+<section class="repos">
+  <h2>Dự án đơn giản</h2>
+  <div class="repo-list">
+    <div class="repo-card">
+      <a href="#" class="repo-name">Đo khoảng cách với cảm biến siêu âm</a>
+      <p class="description">Dự án dùng cảm biến siêu âm HC-SR04 để đo khoảng cách và hiển thị trên màn hình LCD.</p>
+      <p class="tech">ESP32, HC-SR04, Arduino, C++</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Liên hệ</h2>
+  <div class="social-links">
+    <a href="mailto:thuongthpt2006@gmail.com" title="Email" aria-label="Email" style="font-size: 2.2rem;">&#9993;</a>
+
+    <a href="https://www.facebook.com/thuong.hoang.7462" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#58a6ff" viewBox="0 0 24 24" >
+        <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.098 2.797.142v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116C23.4 24 24 23.4 24 22.676V1.325C24 .6 23.4 0 22.675 0z"/>
+      </svg>
+    </a>
+
+    <a href="https://github.com/thief-heart" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#58a6ff" viewBox="0 0 24 24">
+        <path d="M12 .296c-6.627 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.085 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.775.418-1.305.76-1.605-2.665-.302-5.467-1.334-5.467-5.932 0-1.31.468-2.381 1.235-3.222-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.49 11.49 0 0 1 3.003-.403 11.48 11.48 0 0 1 3.003.403c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.233 1.911 1.233 3.222 0 4.61-2.807 5.625-5.479 5.921.43.37.814 1.102.814 2.222v3.293c0 .319.217.694.824.576C20.565 22.092 24 17.592 24 12.296c0-6.627-5.373-12-12-12"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Thương
+</footer>
+
+</div>
+
+</body>
+</html>

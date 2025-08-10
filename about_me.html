@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thương | About Me</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/4b1f8d9b7b.js" crossorigin="anonymous"></script>
   <style>
     :root {
       --bg: #0b0f12;
+      --text: #e6eef6;
       --muted: #9aa6b2;
-      --accent-from: #6EE7B7;
-      --accent-to: #A78BFA;
-      --accent-glow: rgba(167, 139, 250, 0.2);
-      --glass-border: rgba(255,255,255,0.04);
+      --accent1: #6EE7B7;
+      --accent2: #A78BFA;
+      --glass: rgba(255,255,255,0.02);
+      --border: rgba(255,255,255,0.04);
       --radius: 18px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Quicksand', sans-serif;
       background: var(--bg);
-      color: #e6eef6;
-      padding: 16px;
+      color: var(--text);
       line-height: 1.6;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* Fade-in slide animation */
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    .wrap {
+    .container {
       max-width: 1100px;
       margin: auto;
-      background: rgba(255,255,255,0.02);
-      border-radius: 18px;
+      background: var(--glass);
+      border-radius: var(--radius);
       padding: 20px;
-      border: 1px solid rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      animation: fadeSlideUp 0.6s ease forwards;
     }
 
     header {
@@ -41,32 +51,21 @@
       align-items: center;
       text-align: center;
       gap: 12px;
+      animation: fadeSlideUp 0.6s ease 0.1s forwards;
+      opacity: 0;
     }
-
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(255,255,255,0.04);
-      box-shadow: 0 8px 20px var(--accent-glow);
+      border: 3px solid var(--border);
+      box-shadow: 0 8px 20px rgba(167,139,250,0.2);
+      transition: transform 0.3s ease;
     }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-    }
-
-    .role {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
+    .avatar:hover { transform: scale(1.05); }
+    h1 { font-size: 1.8rem; }
+    .role { color: var(--muted); font-size: 0.95rem; }
     .tagline {
       background: linear-gradient(90deg, rgba(110,231,183,0.08), rgba(167,139,250,0.06));
       padding: 8px 12px;
@@ -77,29 +76,33 @@
     main {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      margin-top: 18px;
+      gap: 20px;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.2s forwards;
     }
+    .left, .right { display: flex; flex-direction: column; gap: 20px; }
 
     .card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--glass-border);
+      background: rgba(255,255,255,0.015);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(167,139,250,0.15);
     }
 
     h2 {
       font-size: 1.2rem;
-      background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 8px;
     }
-
-    p.small {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
+    p.small { font-size: 0.9rem; color: var(--muted); }
 
     .values {
       display: flex;
@@ -107,33 +110,34 @@
       gap: 8px;
       margin-top: 10px;
     }
-
     .pill {
       padding: 8px 10px;
       border-radius: 999px;
       background: rgba(167,139,250,0.06);
       font-size: 0.85rem;
+      transition: background 0.3s ease;
     }
+    .pill:hover { background: rgba(167,139,250,0.15); }
 
-    .proj-grid {
+    .projects {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-
     .proj {
       padding: 12px;
       border-radius: 14px;
       background: rgba(255,255,255,0.015);
-      border: 1px solid rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      transition: background 0.3s ease;
     }
-
+    .proj:hover { background: rgba(255,255,255,0.04); }
     .badge {
       display: inline-block;
       padding: 4px 8px;
       border-radius: 999px;
       font-size: 0.75rem;
-      background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
       color: #0b0f12;
       margin-bottom: 4px;
     }
@@ -143,71 +147,56 @@
       flex-wrap: wrap;
       gap: 8px;
     }
-
-    .skill-chip {
+    .skill {
       background: rgba(167,139,250,0.06);
       padding: 6px 8px;
       border-radius: 8px;
       font-size: 0.85rem;
+      transition: background 0.3s ease;
     }
+    .skill:hover { background: rgba(167,139,250,0.15); }
 
-    .contact-list {
+    .contacts {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 8px;
     }
-
-    .contact-list a {
+    .contacts a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
       color: #0b0f12;
-      background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
       padding: 8px 10px;
       border-radius: 10px;
       font-size: 0.85rem;
       font-weight: bold;
+      transition: transform 0.25s ease;
     }
+    .contacts a:hover { transform: translateY(-2px) scale(1.02); }
 
     footer {
       margin-top: 20px;
       text-align: center;
       font-size: 0.85rem;
       color: var(--muted);
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.3s forwards;
     }
 
-    /* Desktop layout */
     @media (min-width: 768px) {
-      header {
-        flex-direction: row;
-        text-align: left;
-        align-items: center;
-      }
-
-      main {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-
-      .left-col {
-        flex: 2;
-      }
-
-      .side {
-        flex: 1;
-      }
-
-      .proj-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
+      header { flex-direction: row; text-align: left; }
+      main { flex-direction: row; }
+      .left { flex: 2; }
+      .right { flex: 1; }
+      .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header>
       <div class="avatar">
         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Avatar Thương">
@@ -220,22 +209,31 @@
     </header>
 
     <main>
-      <div class="left-col">
+      <div class="left">
         <section class="card">
-          <h2>Giới thiệu</h2>
-          <p>Mình là Thương. Nếu bạn đã mở trang này, mình cảm ơn — không phải vì lời khen, mà vì bạn dành thời gian cho một người đang cố gắng thay đổi từng ngày.</p>
-          <p class="small">Mình khá hướng nội; thích quan sát, phân tích và suy nghĩ thầm lặng hơn là nói nhiều...</p>
+            <h2>Giới thiệu</h2>
+            <p>Nếu bạn đã vào đến đây thì chắc hẳn bạn có chút quan tâm hoặc hứng thú về mình. Thật lòng mà nói, mình không phải là người hoàn hảo hay nổi bật nhất, nhưng mình luôn cố gắng trở thành phiên bản tốt hơn của chính mình mỗi ngày.</p>
+  
+            <p class="small">Mình khá hướng nội; thích quan sát, phân tích và tìm cách hiểu vấn đề từ gốc rễ. Mình dành nhiều thời gian để học hỏi công nghệ, đặc biệt là <strong>Arch Linux</strong>, <strong>Python</strong> và các công cụ giúp tự động hóa, tối ưu hóa công việc.</p>
+  
+            <p class="small" style="font-style: italic;">
+    Mình không giỏi mọi thứ, và có lẽ sẽ mất nhiều thời gian hơn người khác để thành thạo. Nhưng mình tin rằng sự kiên trì và tinh thần học hỏi sẽ đưa mình đến được những mục tiêu đã đặt ra.
+            </p>
+
           <div class="values">
-            <div class="pill">Tập trung vào chiều sâu</div>
-            <div class="pill">Học để hiểu</div>
-            <div class="pill">Tiến bộ từng bước</div>
-            <div class="pill">Thực tế & khiêm tốn</div>
+          <div class="pill">Tập trung vào chiều sâu</div>
+          <div class="pill">Học để hiểu</div>
+          <div class="pill">Tiến bộ từng bước</div>
+          <div class="pill">Thực tế & khiêm tốn</div>
+          <div class="pill">Arch Linux</div>
+          <div class="pill">Python</div>
           </div>
         </section>
 
+
         <section class="card">
           <h2>Đang phát triển</h2>
-          <div class="proj-grid">
+          <div class="projects">
             <div class="proj">
               <div class="badge">Đang dev</div>
               <div class="title">Hệ thống đeo tay hỗ trợ người già</div>
@@ -252,25 +250,25 @@
         <section class="card">
           <h2>Kỹ năng</h2>
           <div class="skills">
-            <div class="skill-chip">C++</div>
-            <div class="skill-chip">Python</div>
-            <div class="skill-chip">Linux / Arch</div>
-            <div class="skill-chip">ESP32 & IoT</div>
-            <div class="skill-chip">ROS</div>
-            <div class="skill-chip">Embedded sensors</div>
+            <div class="skill">C++</div>
+            <div class="skill">Python</div>
+            <div class="skill">Linux / Arch</div>
+            <div class="skill">ESP32 & IoT</div>
+            <div class="skill">ROS</div>
+            <div class="skill">Embedded sensors</div>
           </div>
         </section>
       </div>
 
-      <aside class="side">
+      <div class="right">
         <section class="card">
           <h2>Liên hệ</h2>
-          <div class="contact-list">
+          <div class="contacts">
             <a href="mailto:thuongthpt2006@gmail.com"><i class="fa-solid fa-envelope"></i>Email</a>
             <a href="https://www.facebook.com/thuong.hoang.7462" target="_blank"><i class="fa-brands fa-facebook"></i>Facebook</a>
           </div>
         </section>
-      </aside>
+      </div>
     </main>
 
     <footer>

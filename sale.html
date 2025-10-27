@@ -1,46 +1,234 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Office 50K — By Thương</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Office 50K — Tím Pastel | Thương</title>
+  <meta name="description" content="Cài Office Online & Offline — nhanh, gọn, uy tín. Thanh toán MB Bank hoặc quét QR." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; background: #0e1624; color: #f1f5f9; text-align: center; padding: 40px 16px; }
-    h1 { font-size: 2rem; color: #38bdf8; margin-bottom: 10px; }
-    p { color: #cbd5e1; }
-    .card { background: rgba(255,255,255,0.05); border-radius: 14px; padding: 24px; max-width: 600px; margin: 40px auto; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
-    .price { font-size: 1.6rem; font-weight: 700; color: #22d3ee; margin: 12px 0; }
-    .btn { display: inline-block; padding: 12px 22px; border-radius: 10px; background: linear-gradient(90deg,#06b6d4,#3b82f6); color: #fff; font-weight: 700; text-decoration: none; transition: all .15s ease; }
-    .btn:hover { transform: translateY(-3px); }
-    .muted { color: #94a3b8; }
-    .row { display:flex; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap }
-    footer { margin-top: 30px; font-size: 13px; color: #64748b; }
-    .note { margin-top:12px; color:#fda4af; font-weight:600 }
-    @media(max-width:520px){ .card{padding:18px} }
+    :root{
+      --bg1: #f7f5ff; /* very light lavender */
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --accent: #8b5cf6; /* purple */
+      --accent-2: #c084fc; /* lighter purple */
+      --accent-3: #f0abfc; /* pinkish */
+    }
+    body{font-family:'Be Vietnam Pro',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg1),#fbf9ff);color:var(--text);}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 8px 30px rgba(15,23,42,0.06);}
+    .btn-grad{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .soft-outline{box-shadow:0 6px 18px rgba(139,92,246,0.08)}
+    .muted{color:var(--muted)}
+    .accent-underline{background:linear-gradient(90deg,var(--accent),var(--accent-2));height:4px;border-radius:999px}
+    /* responsive tweaks */
+    @media (max-width:640px){ .container{padding:20px} }
   </style>
 </head>
 <body>
-  <h1>Office 50K by Thuong</h1>
-  <p class="muted">Gói cài đặt & hỗ trợ Office cho sinh viên — nhanh, gọn, rõ ràng.</p>
-
-  <div class="card">
-    <h2>Gói: Cài đặt & Hướng dẫn — 50.000đ</h2>
-    <p>✔️ Cài Word, Excel, PowerPoint đầy đủ<br>
-       ✔️ Kiểm tra font, fix lỗi hiển thị<br>
-       ✔️ Hướng dẫn kích hoạt nếu bạn có bản quyền<br>
-       ✔️ Hỗ trợ qua UltraViewer khi cần (link tải bên dưới)</p>
-
-    <div class="price">Giá: 50.000₫</div>
-
-    <div class="row">
-      <!-- Replace FB_LINK and ULTRAVIEW_LINK with your real links -->
-      <a class="btn" id="contactBtn" href="https://web.facebook.com/thuong.hoang.7462">Liên hệ ngay (Facebook)</a>
-      <a class="btn" id="uvBtn" href="https://drive.google.com/file/d/19bqMg5V7Iec4FSdOUx8uuP_M1G2v6q-f/view?usp=drive_link">Tải UltraViewer</a>
+  <!-- Header -->
+  <header class="sticky top-0 bg-white/50 backdrop-blur z-40 border-b border-slate-100">
+    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#8b5cf6] to-[#c084fc] text-white flex items-center justify-center font-bold">O5</div>
+        <div>
+          <div class="font-bold">Office <span class="text-[#8b5cf6]">50K</span></div>
+          <div class="text-xs muted">Cài Office Online & Offline</div>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-4 text-sm muted">
+        <a href="#goi" class="hover:underline">Gói</a>
+        <a href="#process" class="hover:underline">Quy trình</a>
+        <a href="#thanhtoan" class="hover:underline">Thanh toán</a>
+        <a href="#contact" class="hover:underline">Liên hệ</a>
+      </nav>
+      <div class="hidden md:block">
+        <a href="#thanhtoan" class="px-4 py-2 rounded-lg btn-grad soft-outline">Thanh toán</a>
+      </div>
+      <div class="md:hidden">
+        <button id="mBtn" class="px-3 py-2 rounded-md border">Menu</button>
+      </div>
     </div>
+  </header>
 
-    <p class="muted" style="margin-top:12px">Lưu ý: Đây là dịch vụ <strong>cài đặt & hỗ trợ</strong>. Mình <strong>không</strong> cung cấp hay quảng bá phần mềm bẻ khóa (crack).</p>
-  </div>
+  <main class="container mx-auto px-6 py-10">
+    <!-- HERO -->
+    <section class="grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold leading-tight">Cài Office chỉ <span class="text-[#8b5cf6]">50.000₫</span></h1>
+        <p class="muted mt-4">Chọn <strong>Cài Online</strong> (UltraViewer) hoặc <strong>Cài Offline</strong> (tại nhà). Uy tín, minh bạch, không hỗ trợ crack.</p>
 
-  <footer>Admin: Thương • Office50K.vn</footer>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#online" class="px-5 py-3 rounded-lg btn-grad shadow">Cài Online — 50K</a>
+          <a href="#offline" class="px-5 py-3 rounded-lg border text-[#8b5cf6]">Cài Tại Nhà — 70K</a>
+          <a href="https://web.facebook.com/thuong.hoang.7462" target="_blank" class="px-4 py-3 rounded-lg border muted">Facebook</a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="card p-4 flex items-start gap-3">
+            <div class="w-10 h-10 rounded-md bg-[#8b5cf6]/20 flex items-center justify-center">📦</div>
+            <div>
+              <div class="font-semibold">Gói online nhanh</div>
+              <div class="muted text-sm">UltraViewer — thao tác trực tiếp, xong trong 15–30p</div>
+            </div>
+          </div>
+          <div class="card p-4 flex items-start gap-3">
+            <div class="w-10 h-10 rounded-md bg-[#c084fc]/20 flex items-center justify-center">🏠</div>
+            <div>
+              <div class="font-semibold">Gói offline tận nơi</div>
+              <div class="muted text-sm">Tới nhà/office — kiểm tra tận nơi, có phụ phí tùy khu vực</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm muted">Gói tiêu chuẩn</div>
+              <div class="text-2xl font-bold text-[#8b5cf6]">50.000₫</div>
+            </div>
+            <div class="text-sm muted">Cài Word/Excel/PowerPoint</div>
+          </div>
+
+          <ul class="mt-4 text-sm muted space-y-2">
+            <li>• Cài đầy đủ Word, Excel, PowerPoint</li>
+            <li>• Kiểm tra & cài font</li>
+            <li>• Fix lỗi hiển thị, template</li>
+            <li>• Hướng dẫn kích hoạt nếu có bản quyền</li>
+          </ul>
+
+          <div class="mt-6 flex gap-2">
+            <a href="#thanhtoan" class="px-4 py-2 rounded-md btn-grad">Thanh toán</a>
+            <a href="https://drive.google.com/file/d/19bqMg5V7Iec4FSdOUx8uuP_M1G2v6q-f/view?usp=drive_link" target="_blank" class="px-4 py-2 rounded-md border muted">Tải UltraViewer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GÓI DỊCH VỤ -->
+    <section id="goi" class="mt-10">
+      <h2 class="text-2xl font-bold text-center">Gói dịch vụ</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <h3 class="font-semibold">Gói Online — 50.000₫</h3>
+          <ul class="mt-3 muted text-sm space-y-2">
+            <li>• Cài Word, Excel, PowerPoint đầy đủ</li>
+            <li>• Kiểm tra font, fix lỗi hiển thị</li>
+            <li>• Hỗ trợ qua UltraViewer</li>
+          </ul>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-semibold">Gói Offline — 70.000₫</h3>
+          <ul class="mt-3 muted text-sm space-y-2">
+            <li>• Tới nơi cài đặt & tối ưu</li>
+            <li>• Kiểm tra phần cứng & font</li>
+            <li>• Hỗ trợ trực tiếp & hướng dẫn</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUY TRÌNH -->
+    <section id="process" class="mt-12">
+      <h2 class="text-2xl font-bold text-center">Quy trình</h2>
+      <div class="mt-6 grid md:grid-cols-4 gap-4">
+        <div class="card p-4 text-center">1. Liên hệ<br><span class="muted text-sm">Gửi FB: Office + Tên</span></div>
+        <div class="card p-4 text-center">2. Thỏa thuận<br><span class="muted text-sm">Chọn Online/Offline & lịch</span></div>
+        <div class="card p-4 text-center">3. Cài đặt<br><span class="muted text-sm">UltraViewer / Tại nhà</span></div>
+        <div class="card p-4 text-center">4. Kiểm tra<br><span class="muted text-sm">Gửi ảnh thanh toán & nhận hỗ trợ</span></div>
+      </div>
+    </section>
+
+    <!-- THANH TOÁN -->
+    <section id="thanhtoan" class="mt-12">
+      <h2 class="text-2xl font-bold text-center">Thanh toán</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-4">
+        <div class="card p-6 text-center">
+          <div class="text-sm muted">Quét mã để thanh toán</div>
+          <div class="mt-4 inline-block p-3 bg-white rounded-xl shadow">
+            <img src="https://i.ibb.co/N29ZWYd8/IMG-20251027-205256.jpg" alt="QR Thanh toán" class="w-44 h-44 object-cover rounded-lg" />
+          </div>
+          <div class="mt-4 muted text-sm">Quét QR và chuyển 50.000₫ — Ghi nội dung: <strong>Office + Tên bạn</strong></div>
+        </div>
+
+        <div class="card p-6">
+          <div class="text-sm muted">Thông tin chuyển khoản</div>
+          <div class="mt-3 font-semibold text-lg">MB Bank</div>
+          <div class="text-sm muted mt-1">Số TK: <span id="acct" class="font-mono">0367739629</span></div>
+          <div class="text-sm muted mt-1">Chủ TK: <strong>Hoàng Tâm Thương</strong></div>
+          <div class="mt-4 flex gap-2">
+            <button id="copyAcct" class="px-4 py-2 rounded-md btn-grad">Copy Số TK</button>
+            <button id="copyNote" class="px-4 py-2 rounded-md border">Copy Nội dung</button>
+          </div>
+          <div id="copied" class="text-sm text-emerald-600 mt-3 hidden">Đã copy vào clipboard</div>
+        </div>
+
+        <div class="card p-6">
+          <div class="text-sm muted">Hình thức khác</div>
+          <ul class="mt-3 muted text-sm space-y-2">
+            <li>• Momo / ZaloPay: liên hệ để lấy số</li>
+            <li>• Thanh toán tại nhà (Offline) — phí có thể áp dụng</li>
+            <li>• Gửi ảnh chuyển khoản để xác nhận nhanh</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="mt-12 mb-16">
+      <h2 class="text-2xl font-bold text-center">Liên hệ</h2>
+      <div class="mt-6 card p-6">
+        <div class="md:flex md:items-center md:justify-between">
+          <div>
+            <div class="font-semibold">Facebook</div>
+            <a href="https://web.facebook.com/thuong.hoang.7462" target="_blank" rel="noopener noreferrer" class="text-[#8b5cf6]">https://web.facebook.com/thuong.hoang.7462</a>
+            <div class="muted text-sm mt-2">Gửi tin: Hình thức + Tên + Thời gian mong muốn</div>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <div class="font-semibold">UltraViewer</div>
+            <a href="https://drive.google.com/file/d/19bqMg5V7Iec4FSdOUx8uuP_M1G2v6q-f/view?usp=drive_link" target="_blank" class="text-[#8b5cf6] block">Tải UltraViewer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center text-sm muted">© <span id="yr"></span> Office50K — By Thương. Không hỗ trợ crack.</footer>
+  </main>
+
+  <script>
+  // Hiển thị năm hiện tại
+  document.querySelector("#yr").textContent = new Date().getFullYear();
+
+  // Copy helper
+  const showToast = (msg) => {
+    const el = document.querySelector("#copied");
+    el.textContent = msg;
+    el.classList.remove("hidden");
+    setTimeout(() => el.classList.add("hidden"), 1500);
+  };
+
+  // Copy số tài khoản
+  document.querySelector("#copyAcct")?.addEventListener("click", () => {
+    const acct = document.querySelector("#acct")?.textContent.trim();
+    if (acct) {
+      navigator.clipboard.writeText(acct).then(() => showToast("Đã sao chép số tài khoản!"));
+    }
+  });
+
+  // Copy nội dung ghi chú
+  document.querySelector("#copyNote")?.addEventListener("click", () => {
+    const note = "Office - [Tên bạn]";
+    navigator.clipboard.writeText(note).then(() => showToast("Đã sao chép nội dung ghi chú!"));
+  });
+
+  // Menu (chỉ hiển thị alert)
+  document.querySelector("#mBtn")?.addEventListener("click", () => {
+    alert("Menu: Gói dịch vụ • Cài đặt • Thanh toán • Liên hệ");
+  });
+</script>
 </body>
 </html>

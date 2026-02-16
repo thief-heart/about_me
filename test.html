@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vòng Quay Lì Xì</title>
+
+<style>
+/* GIỮ NGUYÊN TOÀN BỘ CSS */
+body{
+    margin:0;
+    min-height:120vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:radial-gradient(circle,#d40000 0%,#4a0000 100%);
+    font-family:sans-serif;
+    color:#FFD700;
+}
+
+h2{
+    margin-top:30px;
+    font-size:36px;
+    text-shadow:0 0 15px gold;
+}
+
+#wheel-container{
+    position:relative;
+    margin-top:20px;
+}
+
+.arrow{
+    position:absolute;
+    top:-15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-top:35px solid #FFD700;
+    z-index:10;
+}
+
+canvas{
+    width:90vw;
+    max-width:420px;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:#fff;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#FFD700,#f9a825);
+    color:#800000;
+    font-weight:bold;
+}
+
+#cuteBtn{
+    margin-top:60px;
+    opacity:0.6;
+    font-size:14px;
+    padding:8px 20px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-box{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    color:#800000;
+    width:280px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Vòng Quay Lì Xì</h2>
+
+<div id="wheel-container">
+<div class="arrow"></div>
+<canvas id="wheel"></canvas>
+</div>
+
+<button onclick="spin()">Quay</button>
+<button onclick="confirmReset()">Reset</button>
+<button id="cuteBtn" onclick="toggleCute()">Cute: OFF</button>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="modalText"></h3>
+    <div id="modalButtons"></div>
+  </div>
+</div>
+
+<audio id="spinSound" src="spin.mp3"></audio>
+<audio id="win0" src="win.mp3" preload="auto"></audio>
+<audio id="win1" src="win1.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="background.mp3" loop></audio>
+
+<script>
+const canvas=document.getElementById("wheel");
+const ctx=canvas.getContext("2d");
+const spinSound=document.getElementById("spinSound");
+const bgMusic=document.getElementById("bgMusic");
+
+const winSounds=[
+    document.getElementById("win0"),
+    document.getElementById("win1")
+];
+
+const segments=[
+"10k",
+"5k","5k","5k","5k","5k","5k",
+"1k","1k","1k",
+"2k","2k","2k","2k","2k","2k","2k","2k"
+];
+
+const colors=segments.map((_,i)=> i%2===0?"#d00000":"#FFD700");
+
+let available=[];
+let angle=0;
+let spinning=false;
+let cuteMode=false;
+
+/* ===== AUTO BẬT CUTE MODE TỪ LINK ===== */
+const urlParams = new URLSearchParams(window.location.search);
+const secretCode = urlParams.get("code");
+
+if(secretCode === "cute"){
+    cuteMode = true;
+    window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("cuteBtn").innerText="Cute: ON 😈";
+    });
+}
+
+document.addEventListener("click", function startMusic(){
+    bgMusic.volume=0.4;
+    bgMusic.play();
+    document.removeEventListener("click", startMusic);
+});
+
+function resize(){
+    const size=canvas.clientWidth;
+    canvas.width=size;
+    canvas.height=size;
+    drawWheel();
+}
+window.addEventListener("resize",resize);
+
+function saveState(){
+    localStorage.setItem("wheel_available", JSON.stringify(available));
+}
+
+function loadState(){
+    const saved=localStorage.getItem("wheel_available");
+    if(saved){ available=JSON.parse(saved);}
+    else{ resetGame(); }
+}
+
+function resetGame(){
+    available=[...Array(18).keys()];
+    saveState();
+    drawWheel();
+}
+
+function drawWheel(){
+    const size=canvas.width;
+    const center=size/2;
+    const radius=size/2-10;
+    const arc=2*Math.PI/18;
+
+    ctx.clearRect(0,0,size,size);
+
+    for(let i=0;i<18;i++){
+        ctx.beginPath();
+        ctx.moveTo(center,center);
+        ctx.fillStyle=available.includes(i)?colors[i]:"#555";
+        ctx.arc(center,center,radius,angle+i*arc,angle+(i+1)*arc);
+        ctx.fill();
+        ctx.strokeStyle="#800000";
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(center,center);
+        ctx.rotate(angle+i*arc+arc/2);
+        ctx.textAlign="right";
+        ctx.fillStyle="white";
+        ctx.font=`bold ${size*0.05}px Arial`;
+        ctx.fillText(segments[i],radius-15,5);
+        ctx.restore();
+    }
+}
+
+function showModal(text,buttonsHTML){
+    document.getElementById("modalText").innerText=text;
+    document.getElementById("modalButtons").innerHTML=buttonsHTML;
+    document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+function confirmReset(){
+    showModal(
+        "Bạn có chắc chắn muốn reset?",
+        `<button onclick="doReset()">Có</button>
+         <button onclick="closeModal()">Không</button>`
+    );
+}
+
+function doReset(){
+    resetGame();
+    closeModal();
+}
+
+function toggleCute(){
+    cuteMode=!cuteMode;
+    document.getElementById("cuteBtn").innerText=
+        "Cute: "+(cuteMode?"ON 😈":"OFF 😇");
+}
+
+function spin(){
+    if(spinning) return;
+    spinning=true;
+
+    if(available.length===0){
+        resetGame();
+    }
+
+    let target;
+    if(cuteMode){
+        target=0;
+    }else{
+        let normal=available.filter(i=>i!==0);
+        target=normal[Math.floor(Math.random()*normal.length)];
+    }
+
+    spinSound.currentTime=0;
+    spinSound.play();
+
+    const segmentAngle=360/18;
+    const targetAngle=270-(target*segmentAngle)-segmentAngle/2;
+    const spinAngle=360*6+targetAngle;
+
+    let duration=4000,start=null;
+
+    function animate(t){
+        if(!start) start=t;
+        let progress=t-start;
+        let percent=Math.min(progress/duration,1);
+        let ease=1-Math.pow(1-percent,4);
+
+        angle=(spinAngle*ease)*Math.PI/180;
+        drawWheel();
+
+        if(progress<duration){
+            requestAnimationFrame(animate);
+        }else{
+            spinning=false;
+            spinSound.pause();
+            spinSound.currentTime=0;
+
+            available=available.filter(i=>i!==target);
+            saveState();
+
+            const sound=winSounds[Math.floor(Math.random()*winSounds.length)];
+            sound.currentTime=0;
+            sound.play().catch(()=>{});
+
+            setTimeout(()=>{
+                showModal(
+                    "🎉 Chúc mừng bạn trúng: "+segments[target],
+                    `<button onclick="closeModal()">Đóng</button>`
+                );
+            },500);
+
+            if(available.length===0){
+                setTimeout(()=>resetGame(),1000);
+            }
+        }
+    }
+    requestAnimationFrame(animate);
+}
+
+loadState();
+resize();
+</script>
+
+</body>
+</html>
